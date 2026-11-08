@@ -15,6 +15,15 @@ body{margin:0;min-height:100%;color:#f0e6d2;font-family:-apple-system,sans-serif
 body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
   background:radial-gradient(120% 90% at 50% 50%,rgba(0,0,0,0) 36%,rgba(0,0,0,.72) 100%)}
 
+.bookframe{position:fixed;inset:34px;z-index:7;pointer-events:none;
+  border:1px solid rgba(200,168,110,0.5);
+  box-shadow:inset 0 0 0 1px rgba(200,168,110,0.10), 0 0 40px rgba(0,0,0,0.4)}
+.bookframe::after{content:"";position:absolute;inset:5px;border:1px solid rgba(200,168,110,0.18)}
+.bookframe b{position:absolute;width:13px;height:13px;border:1px solid rgba(224,199,147,0.55);transform:rotate(45deg);background:rgba(10,9,8,0.55)}
+.bookframe b.tl{left:-7px;top:-7px}
+.bookframe b.tr{right:-7px;top:-7px}
+.bookframe b.br{right:-7px;bottom:-7px}
+.bookframe b.bl{left:-7px;bottom:-7px}
 .vframe{position:fixed;inset:0;z-index:9;pointer-events:none}
 .vframe i{position:absolute;display:block;background-position:center}
 .vframe .t{left:0;right:0;top:0;height:34px;
@@ -97,6 +106,7 @@ blockquote cite{display:block;font-style:normal;font-size:9.5px;letter-spacing:.
 </style>
 </head>
 <body>
+<div class="bookframe"><b class="tl"></b><b class="tr"></b><b class="br"></b><b class="bl"></b></div>
 <div class="vframe"><i class="t"></i><i class="b"></i><i class="l"></i><i class="r"></i>
 </div>
 
