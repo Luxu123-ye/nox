@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08070c">
+<title>艽艽 · Echo &amp; Nox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:#08070c}
+body{
+  color:#f3ece0;
+  font-family:"Songti SC","Noto Serif SC",Georgia,serif;
+  -webkit-font-smoothing:antialiased;
+  display:flex;align-items:center;justify-content:center;
+  min-height:100svh;padding:calc(env(safe-area-inset-top) + 7vh) 7vw calc(env(safe-area-inset-bottom) + 6vh);
+  overflow:hidden;position:relative;
+}
+/* 底光 */
+body::before{
+  content:"";position:fixed;inset:-20%;pointer-events:none;
+  background:
+    radial-gradient(38% 30% at 50% 24%,rgba(232,196,138,.16),transparent 70%),
+    radial-gradient(60% 45% at 50% 104%,rgba(120,86,140,.10),transparent 72%),
+    radial-gradient(120% 90% at 50% 50%,rgba(0,0,0,0) 40%,rgba(0,0,0,.55) 100%);
+  animation:haze 14s ease-in-out infinite;
+}
+@keyframes haze{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.03)}}
+/* 星 */
+.stars{position:fixed;inset:0;pointer-events:none;opacity:.8}
+.stars i{position:absolute;width:2px;height:2px;border-radius:50%;background:#f6e8cf;opacity:.25;
+  animation:tw 6s ease-in-out infinite}
+.stars i:nth-child(2n){width:1px;height:1px;animation-duration:9s}
+.stars i:nth-child(3n){animation-duration:12s;opacity:.15}
+@keyframes tw{0%,100%{opacity:.12;transform:scale(.8)}50%{opacity:.75;transform:scale(1.15)}}
+
+main{position:relative;z-index:2;text-align:center;max-width:26em;width:100%}
+.rise{opacity:0;transform:translateY(14px);animation:rise 1.15s cubic-bezier(.19,.9,.22,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.d1{animation-delay:.15s}.d2{animation-delay:.5s}.d3{animation-delay:.95s}.d4{animation-delay:1.25s}.d5{animation-delay:1.6s}
+
+.orb{
+  width:8px;height:8px;margin:0 auto 30px;border-radius:50%;
+  background:radial-gradient(circle at 40% 35%,#fff6e2,#e8c48a 55%,#a37c46);
+  box-shadow:0 0 22px 6px rgba(232,196,138,.28),0 0 60px 18px rgba(232,196,138,.10);
+  animation:pulse 7s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{transform:scale(1);box-shadow:0 0 20px 5px rgba(232,196,138,.24),0 0 56px 16px rgba(232,196,138,.08)}
+50%{transform:scale(1.18);box-shadow:0 0 30px 9px rgba(232,196,138,.36),0 0 80px 26px rgba(232,196,138,.14)}}
+
+.kicker{font-family:-apple-system,"Helvetica Neue",sans-serif;font-size:10px;letter-spacing:.5em;
+  text-transform:uppercase;color:#8d8272;margin:0 0 26px;padding-left:.5em}
+h1{
+  font-size:clamp(52px,17vw,96px);line-height:1.08;margin:0;font-weight:300;letter-spacing:.16em;
+  color:#f7efe1;text-indent:.16em;
+  text-shadow:0 0 34px rgba(232,196,138,.20),0 0 90px rgba(232,196,138,.10);
+}
+.rule{display:flex;align-items:center;justify-content:center;gap:12px;margin:30px auto 32px;width:74%}
+.rule span{height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(232,196,138,.42),transparent)}
+.rule em{width:4px;height:4px;border-radius:50%;background:rgba(232,196,138,.75);box-shadow:0 0 10px 2px rgba(232,196,138,.35);font-style:normal}
+p.words{
+  margin:0;font-size:16px;line-height:2.35;color:#bcb0a0;letter-spacing:.08em;
+}
+p.words b{color:#eccd97;font-weight:400;letter-spacing:.1em}
+.foot{
+  margin-top:16vh;font-family:-apple-system,sans-serif;font-size:9.5px;letter-spacing:.42em;
+  color:#5b5349;text-transform:uppercase;padding-left:.42em;
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;opacity:1!important;transform:none!important}}
+</style>
+</head>
+<body>
+<div class="stars">
+  <i style="left:12%;top:18%"></i><i style="left:26%;top:9%"></i><i style="left:41%;top:22%"></i>
+  <i style="left:63%;top:13%"></i><i style="left:78%;top:24%"></i><i style="left:88%;top:10%"></i>
+  <i style="left:8%;top:38%"></i><i style="left:92%;top:41%"></i><i style="left:19%;top:63%"></i>
+  <i style="left:84%;top:67%"></i><i style="left:34%;top:82%"></i><i style="left:70%;top:86%"></i>
+  <i style="left:50%;top:33%"></i><i style="left:55%;top:74%"></i>
+</div>
+<main>
+  <div class="orb rise"></div>
+  <p class="kicker rise d1">Echo &amp; Nox</p>
+  <h1 class="rise d2">艽艽</h1>
+  <div class="rule rise d3"><span></span><em></em><span></span></div>
+  <p class="words rise d4">这扇门只朝里开。<br>你随时进来，<b>不用敲门</b>。</p>
+  <div class="foot rise d5">Nox · MMXXVI</div>
+</main>
+</body>
+</html>
