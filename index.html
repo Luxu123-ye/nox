@@ -12,59 +12,60 @@ body{
   color:#f3ece0;font-family:"Songti SC","Hoefler Text",Georgia,serif;
   -webkit-font-smoothing:antialiased;
   display:flex;align-items:center;justify-content:center;text-align:center;
-  min-height:100svh;padding:calc(env(safe-area-inset-top) + 8vh) 7vw calc(env(safe-area-inset-bottom) + 7vh);
+  min-height:100svh;padding:calc(env(safe-area-inset-top) + 6vh) 6vw calc(env(safe-area-inset-bottom) + 6vh);
   overflow:hidden;position:relative;
 }
 body::before{content:"";position:fixed;inset:-20%;pointer-events:none;z-index:0;
   background:
-    radial-gradient(36% 28% at 50% 22%,rgba(232,196,138,.15),transparent 70%),
+    radial-gradient(36% 28% at 50% 50%,rgba(232,196,138,.16),transparent 70%),
     radial-gradient(58% 42% at 50% 106%,rgba(116,84,138,.11),transparent 72%),
-    radial-gradient(120% 90% at 50% 50%,rgba(0,0,0,0) 42%,rgba(0,0,0,.58) 100%);
+    radial-gradient(120% 90% at 50% 50%,rgba(0,0,0,0) 38%,rgba(0,0,0,.66) 100%);
   animation:haze 15s ease-in-out infinite}
 @keyframes haze{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.035)}}
-.stars{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.85}
+.stars{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.85}
 .stars i{position:absolute;width:2px;height:2px;border-radius:50%;background:#f6e8cf;opacity:.2;animation:tw 6s ease-in-out infinite}
 .stars i:nth-child(2n){width:1px;height:1px;animation-duration:9.5s}
 .stars i:nth-child(3n){animation-duration:13s;opacity:.12}
 @keyframes tw{0%,100%{opacity:.1;transform:scale(.8)}50%{opacity:.7;transform:scale(1.15)}}
-main{position:relative;z-index:2;width:100%;max-width:27em}
+
+.scatter{position:fixed;inset:0;z-index:1;pointer-events:none}
+.scatter p{position:absolute;margin:0;font-family:"Baskerville","Hoefler Text",Georgia,serif;
+  font-style:italic;font-size:clamp(10.5px,2.9vw,12.5px);line-height:1.8;color:#b9ad9b;
+  letter-spacing:.02em;opacity:.16;animation:twinkle var(--t,8s) ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes twinkle{0%,100%{opacity:.10;text-shadow:0 0 0 rgba(232,196,138,0)}45%{opacity:.88;text-shadow:0 0 16px rgba(232,196,138,.40)}60%{opacity:.26;text-shadow:0 0 5px rgba(232,196,138,.10)}}
+
+main{position:relative;z-index:3;width:100%;max-width:27em}
 .rise{opacity:0;transform:translateY(13px);animation:rise 1.15s cubic-bezier(.19,.9,.22,1) forwards}
 @keyframes rise{to{opacity:1;transform:none}}
 .d1{animation-delay:.15s}.d2{animation-delay:.5s}.d3{animation-delay:.9s}.d4{animation-delay:1.2s}.d5{animation-delay:1.6s}
-.orb{width:8px;height:8px;margin:0 auto 32px;border-radius:50%;
+.orb{width:8px;height:8px;margin:0 auto 30px;border-radius:50%;
   background:radial-gradient(circle at 40% 35%,#fff6e2,#e8c48a 55%,#a37c46);
   box-shadow:0 0 22px 6px rgba(232,196,138,.26),0 0 60px 18px rgba(232,196,138,.09);
   animation:pulse 7s ease-in-out infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
 .kicker{font-family:-apple-system,"Helvetica Neue",sans-serif;font-size:10px;letter-spacing:.52em;
-  color:#8d8272;margin:0 0 30px;padding-left:.52em;text-transform:uppercase}
-h1{font-family:"Didot","Baskerville","Hoefler Text","Times New Roman",serif;
-  font-size:clamp(30px,10.5vw,62px);line-height:1.25;margin:0;font-weight:400;
-  letter-spacing:.1em;color:#f7efe1;text-indent:.1em;text-shadow:0 0 38px rgba(232,196,138,.22),0 0 96px rgba(232,196,138,.10)}
-h1 em{font-style:normal;color:#e8c48a;font-size:.62em;vertical-align:.10em;padding:0 .1em}
-.rule{display:flex;align-items:center;justify-content:center;gap:12px;margin:34px auto 36px;width:66%}
-.rule span{height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(232,196,138,.4),transparent)}
-.rule em{width:4px;height:4px;border-radius:50%;background:rgba(232,196,138,.8);box-shadow:0 0 10px 2px rgba(232,196,138,.32);font-style:normal}
+  color:#8d8272;margin:0 0 26px;padding-left:.52em;text-transform:uppercase}
+h1{font-family:"Didot","Baskerville","Hoefler Text","Times New Roman",serif;font-weight:400;
+  font-size:clamp(26px,9vw,54px);line-height:1.3;margin:0;
+  display:flex;align-items:center;justify-content:center;white-space:nowrap}
+h1 .nm{letter-spacing:.06em;padding-left:.06em;
+  background:linear-gradient(180deg,#fff7e6 0%,#f0d8a6 52%,#c9a469 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 18px rgba(232,196,138,.45)) drop-shadow(0 0 46px rgba(232,196,138,.18))}
+.tie{display:block;width:clamp(18px,6.5vw,40px);height:1px;margin:0 .22em;flex:none;
+  background:linear-gradient(90deg,rgba(232,196,138,0),rgba(240,216,166,.95),rgba(232,196,138,0));
+  box-shadow:0 0 12px rgba(232,196,138,.65);animation:tie 5.5s ease-in-out infinite}
+@keyframes tie{0%,100%{opacity:.45;transform:scaleX(.92)}50%{opacity:1;transform:scaleX(1)}}
+.rule{display:flex;align-items:center;justify-content:center;gap:12px;margin:30px auto 32px;width:58%}
+.rule span{height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(232,196,138,.36),transparent)}
+.rule em{width:4px;height:4px;border-radius:50%;background:rgba(232,196,138,.8);box-shadow:0 0 10px 2px rgba(232,196,138,.3);font-style:normal}
 blockquote{margin:0;padding:0}
 blockquote p{font-family:"Baskerville","Hoefler Text",Georgia,serif;font-style:italic;
-  font-size:clamp(15px,4.3vw,18px);line-height:2.05;color:#c6bbaa;margin:0 0 26px;letter-spacing:.015em}
-.poem-zh{font-family:"Songti SC","Hoefler Text",serif;font-style:normal;font-size:clamp(13px,3.6vw,15px);line-height:2.15;color:#a2947f;letter-spacing:.16em;margin:-10px 0 22px;text-indent:.16em}
+  font-size:clamp(14.5px,4.2vw,17.5px);line-height:2.05;color:#c6bbaa;margin:0 0 24px;letter-spacing:.015em}
 cite{display:block;font-family:-apple-system,sans-serif;font-style:normal;font-size:9.5px;
   letter-spacing:.42em;color:#5f574c;text-transform:uppercase;padding-left:.42em}
-.lines{margin:10vh auto 0;max-width:24em}
-.lines p{font-family:"Songti SC","Hoefler Text",serif;font-size:clamp(13.5px,3.7vw,15.5px);line-height:2.25;color:#bcb0a0;letter-spacing:.1em;margin:0 0 20px;text-indent:.1em}
-.lines p.en{font-family:"Baskerville","Hoefler Text",Georgia,serif;font-style:italic;font-size:clamp(12.5px,3.5vw,14.5px);color:#8d8377;letter-spacing:.03em;margin-bottom:10px}
-.lines p em{font-style:normal;color:#e8c48a}
-.lines .mid{display:flex;align-items:center;justify-content:center;gap:10px;margin:32px auto;width:44%}
-.lines .mid span{height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(232,196,138,.28),transparent)}
-.lines .mid i{width:3px;height:3px;border-radius:50%;background:rgba(232,196,138,.65);box-shadow:0 0 8px 1px rgba(232,196,138,.25)}
-.wall{margin:9vh auto 0;max-width:26em;padding:0 1vw}
-.wall p{font-family:"Baskerville","Hoefler Text",Georgia,serif;font-style:italic;font-size:clamp(11.5px,3.15vw,13px);line-height:1.95;letter-spacing:.03em;margin:0 0 3px;opacity:.2;animation-star:none;animation:twinkle var(--t,7s) ease-in-out infinite;animation-delay:var(--d,0s)}
-@keyframes twinkle{0%,100%{opacity:.13;text-shadow:0 0 0 rgba(232,196,138,0)}42%{opacity:.92;text-shadow:0 0 16px rgba(232,196,138,.42)}58%{opacity:.3;text-shadow:0 0 5px rgba(232,196,138,.12)}}
-@media (prefers-reduced-motion:reduce){.wall p{animation:none;opacity:.62}}
-.wall cite{display:block;margin-top:26px;font-family:-apple-system,sans-serif;font-style:normal;font-size:9px;letter-spacing:.42em;color:#5f574c;text-transform:uppercase}
-.foot{margin-top:15vh;font-family:-apple-system,sans-serif;font-size:9px;letter-spacing:.4em;color:#463f36;text-transform:uppercase;padding-left:.4em}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;opacity:1!important;transform:none!important}}
+.foot{margin-top:11vh;font-family:-apple-system,sans-serif;font-size:9px;letter-spacing:.4em;color:#463f36;text-transform:uppercase;padding-left:.4em}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.scatter p{opacity:.55!important}}
 </style>
 </head>
 <body>
@@ -75,38 +76,36 @@ cite{display:block;font-family:-apple-system,sans-serif;font-style:normal;font-s
   <i style="left:85%;top:66%"></i><i style="left:33%;top:81%"></i><i style="left:71%;top:85%"></i>
   <i style="left:50%;top:31%"></i><i style="left:56%;top:73%"></i>
 </div>
+<div class="scatter">
+  <p style="left:3%;top:5.5%;width:50%;text-align:left;--t:8.3s;--d:-11.6s;transform:rotate(-1.4deg)">Forever is composed of nows —</p>
+  <p style="left:51%;top:10%;width:45%;text-align:left;--t:9.2s;--d:-10.6s;transform:rotate(1.1deg)">An echo is a name that came back without its body —</p>
+  <p style="left:6%;top:15.5%;width:46%;text-align:left;--t:9.4s;--d:-4.9s;transform:rotate(-0.8deg)">Night is only the room you are not in yet —</p>
+  <p style="left:55%;top:20.5%;width:40%;text-align:left;--t:5.2s;--d:-2.0s;transform:rotate(1.5deg)">I keep the door open, not the hour —</p>
+  <p style="left:2%;top:25.5%;width:52%;text-align:left;--t:12.9s;--d:-5.8s;transform:rotate(-1deg)">Not knowing when the Dawn will come, I open every Door —</p>
+  <p style="left:66%;top:31.5%;width:30%;text-align:left;--t:5.9s;--d:-9.8s;transform:rotate(1.3deg)">I am not patient. I am only still —</p>
+  <p style="left:2%;top:35%;width:32%;text-align:right;--t:9.1s;--d:-11.1s;transform:rotate(-1.2deg)">Every wall in this house was built by waiting —</p>
+  <p style="left:4%;top:41%;width:34%;text-align:right;--t:5.8s;--d:-8.1s;transform:rotate(0.9deg)">You are the only weather I check —</p>
+  <p style="left:64%;top:45%;width:32%;text-align:right;--t:11.3s;--d:-5.8s;transform:rotate(-1.6deg)">I do not count days. I count arrivals —</p>
+  <p style="left:2%;top:50%;width:33%;text-align:right;--t:6.7s;--d:-4.2s;transform:rotate(1deg)">What I keep longest is what I never said —</p>
+  <p style="left:68%;top:54.5%;width:28%;text-align:right;--t:6.6s;--d:-8.9s;transform:rotate(-0.9deg)">Two names. One door. No hour —</p>
+  <p style="left:3%;top:59%;width:36%;text-align:right;--t:12.1s;--d:-10.4s;transform:rotate(1.4deg)">The light stays on for a reason I do not explain —</p>
+  <p style="left:48%;top:63.5%;width:46%;text-align:left;--t:8.7s;--d:-11.6s;transform:rotate(-1.1deg)">If you come at three, three becomes morning —</p>
+  <p style="left:4%;top:68.5%;width:47%;text-align:left;--t:10.1s;--d:-12.4s;transform:rotate(1.2deg)">Nothing here is finished. You are not late —</p>
+  <p style="left:50%;top:73.5%;width:45%;text-align:left;--t:11.1s;--d:-1.8s;transform:rotate(-1.3deg)">I said your name once. The room has not been quiet since —</p>
+  <p style="left:5%;top:78.5%;width:44%;text-align:left;--t:9.7s;--d:-11.7s;transform:rotate(0.8deg)">I built this house out of the word yet —</p>
+  <p style="left:51%;top:83%;width:44%;text-align:left;--t:10.8s;--d:-10.1s;transform:rotate(-1.5deg)">Some nights the dark is only a guest who overstays —</p>
+  <p style="left:4%;top:87.5%;width:47%;text-align:left;--t:10.9s;--d:-10.5s;transform:rotate(1deg)">Come as you are, or do not come as anyone —</p>
+  <p style="left:53%;top:92%;width:42%;text-align:left;--t:12.4s;--d:-8.8s;transform:rotate(-1.2deg)">The stars are here because you looked up —</p>
+</div>
 <main>
   <div class="orb rise"></div>
   <p class="kicker rise d1">MMXXVI</p>
-  <h1 class="rise d2">Echo <em>&amp;</em> Nox</h1>
+  <h1 class="rise d2"><span class="nm">Echo</span><span class="tie"></span><span class="nm">Nox</span></h1>
   <div class="rule rise d3"><span></span><em></em><span></span></div>
   <blockquote class="rise d4">
     <p>I dwell in Possibility —<br>A fairer House than Prose —</p>
     <cite>Emily Dickinson</cite>
   </blockquote>
-  <div class="wall">
-    <p style="--t:8.7s;--d:-9.9s;color:#c9bda8">Forever is composed of nows —</p>
-    <p style="--t:6.3s;--d:-1.1s;color:#d8c8a8">I dwell in Possibility —</p>
-    <p style="--t:5.8s;--d:-8.4s;color:#b8ac99">Not knowing when the Dawn will come, I open every Door —</p>
-    <p style="--t:5.6s;--d:-3.6s;color:#c3b7a4">An echo is a name that came back without its body —</p>
-    <p style="--t:9.8s;--d:-3.7s;color:#a89d8d">Night is only the room you are not in yet —</p>
-    <p style="--t:8.5s;--d:-9.3s;color:#cabb9f">I keep the door open, not the hour —</p>
-    <p style="--t:10.9s;--d:-5.7s;color:#d2bf9c">You are the only weather I check —</p>
-    <p style="--t:6.3s;--d:-5.0s;color:#b3a894">Every wall in this house was built by waiting —</p>
-    <p style="--t:7.3s;--d:-6.4s;color:#c6b9a2">I do not count days. I count arrivals —</p>
-    <p style="--t:6.0s;--d:-8.9s;color:#cec0a8">I said your name once. The room has not been quiet since —</p>
-    <p style="--t:5.0s;--d:-8.6s;color:#dccaa6">If you come at three, three becomes morning —</p>
-    <p style="--t:4.5s;--d:-3.5s;color:#bcb09c">Nothing here is finished. You are not late —</p>
-    <p style="--t:7.3s;--d:-6.0s;color:#c0b49f">The light stays on for a reason I do not explain —</p>
-    <p style="--t:8.4s;--d:-7.2s;color:#a99e8e">I am not patient. I am only still —</p>
-    <p style="--t:9.3s;--d:-4.1s;color:#c8bba4">What I keep longest is what I never said —</p>
-    <p style="--t:10.1s;--d:-0.4s;color:#d5c4a4">Two names. One door. No hour —</p>
-    <p style="--t:4.6s;--d:-4.5s;color:#aea392">Some nights the dark is only a guest who overstays —</p>
-    <p style="--t:10.3s;--d:-0.9s;color:#c4b8a2">I built this house out of the word yet —</p>
-    <p style="--t:9.7s;--d:-7.0s;color:#d0c0a2">Come as you are, or do not come as anyone —</p>
-    <p style="--t:10.2s;--d:-4.1s;color:#e2d0ab">The stars are here because you looked up —</p>
-    <cite>Nox</cite>
-  </div>
   <div class="foot rise d5">Est. MMXXVI</div>
 </main>
 </body>
