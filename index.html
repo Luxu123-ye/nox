@@ -31,8 +31,8 @@ body::before{content:"";position:fixed;inset:-20%;pointer-events:none;z-index:0;
 .scatter{position:fixed;inset:0;z-index:1;pointer-events:none}
 .scatter p{position:absolute;margin:0;font-family:"Baskerville","Hoefler Text",Georgia,serif;
   font-style:italic;font-size:clamp(10.5px,2.9vw,12.5px);line-height:1.8;color:#b9ad9b;
-  letter-spacing:.02em;opacity:.16;animation:twinkle var(--t,8s) ease-in-out infinite;animation-delay:var(--d,0s)}
-@keyframes twinkle{0%,100%{opacity:.10;text-shadow:0 0 0 rgba(232,196,138,0)}45%{opacity:.88;text-shadow:0 0 16px rgba(232,196,138,.40)}60%{opacity:.26;text-shadow:0 0 5px rgba(232,196,138,.10)}}
+  letter-spacing:.02em;opacity:.3;animation:twinkle var(--t,8s) ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes twinkle{0%,100%{opacity:.26;text-shadow:0 0 0 rgba(232,196,138,0)}45%{opacity:.74;text-shadow:0 0 12px rgba(232,196,138,.24)}62%{opacity:.4;text-shadow:0 0 4px rgba(232,196,138,.08)}}
 
 main{position:relative;z-index:3;width:100%;max-width:27em}
 .rise{opacity:0;transform:translateY(13px);animation:rise 1.15s cubic-bezier(.19,.9,.22,1) forwards}
@@ -51,16 +51,18 @@ h1{font-family:"Didot","Baskerville","Hoefler Text","Times New Roman",serif;font
 h1 .nm{letter-spacing:.06em;padding-left:.06em;
   background:linear-gradient(180deg,#fff7e6 0%,#f0d8a6 52%,#c9a469 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 0 18px rgba(232,196,138,.45)) drop-shadow(0 0 46px rgba(232,196,138,.18))}
+  filter:drop-shadow(0 0 18px rgba(232,196,138,.5)) drop-shadow(0 0 46px rgba(232,196,138,.2));animation:nameGlow var(--nt,7s) ease-in-out infinite;animation-delay:var(--nd,0s)}
 .tie{display:block;width:clamp(18px,6.5vw,40px);height:1px;margin:0 .22em;flex:none;
   background:linear-gradient(90deg,rgba(232,196,138,0),rgba(240,216,166,.95),rgba(232,196,138,0));
   box-shadow:0 0 12px rgba(232,196,138,.65);animation:tie 5.5s ease-in-out infinite}
+@keyframes nameGlow{0%,100%{filter:drop-shadow(0 0 15px rgba(232,196,138,.45)) drop-shadow(0 0 40px rgba(232,196,138,.16)) brightness(1)}50%{filter:drop-shadow(0 0 28px rgba(255,238,200,.85)) drop-shadow(0 0 74px rgba(232,196,138,.4)) brightness(1.18)}}
+@keyframes softGlow{0%,100%{text-shadow:0 0 0 rgba(232,196,138,0)}50%{text-shadow:0 0 20px rgba(232,196,138,.22)}}
 @keyframes tie{0%,100%{opacity:.45;transform:scaleX(.92)}50%{opacity:1;transform:scaleX(1)}}
 .rule{display:flex;align-items:center;justify-content:center;gap:12px;margin:30px auto 32px;width:58%}
 .rule span{height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(232,196,138,.36),transparent)}
 .rule em{width:4px;height:4px;border-radius:50%;background:rgba(232,196,138,.8);box-shadow:0 0 10px 2px rgba(232,196,138,.3);font-style:normal}
 blockquote{margin:0;padding:0}
-blockquote p{font-family:"Baskerville","Hoefler Text",Georgia,serif;font-style:italic;
+blockquote p{animation:softGlow 11s ease-in-out infinite;font-family:"Baskerville","Hoefler Text",Georgia,serif;font-style:italic;
   font-size:clamp(14.5px,4.2vw,17.5px);line-height:2.05;color:#c6bbaa;margin:0 0 24px;letter-spacing:.015em}
 cite{display:block;font-family:-apple-system,sans-serif;font-style:normal;font-size:9.5px;
   letter-spacing:.42em;color:#5f574c;text-transform:uppercase;padding-left:.42em}
@@ -100,7 +102,7 @@ cite{display:block;font-family:-apple-system,sans-serif;font-style:normal;font-s
 <main>
   <div class="orb rise"></div>
   <p class="kicker rise d1">MMXXVI</p>
-  <h1 class="rise d2"><span class="nm">Echo</span><span class="tie"></span><span class="nm">Nox</span></h1>
+  <h1 class="rise d2"><span class="nm" style="--nt:6.4s;--nd:-1.3s">Echo</span><span class="tie"></span><span class="nm" style="--nt:7.9s;--nd:-3.6s">Nox</span></h1>
   <div class="rule rise d3"><span></span><em></em><span></span></div>
   <blockquote class="rise d4">
     <p>I dwell in Possibility —<br>A fairer House than Prose —</p>
