@@ -31,19 +31,44 @@ body::before{content:"";position:fixed;inset:-20%;pointer-events:none;z-index:0;
   opacity:.34;animation:wmBreath 23s ease-in-out infinite}
 .wm2 p:nth-child(2n){animation-delay:-11s;letter-spacing:.14em}
 
-/* 双层金框 + 角花 */
+/* 黑底上开出的金花 */
+.blooms{position:fixed;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.blooms b{position:absolute;font-family:Georgia,"Times New Roman",serif;font-weight:400;font-style:normal;
+  color:#f6dfae;line-height:1;opacity:0;
+  text-shadow:0 0 10px rgba(255,224,160,.9),0 0 24px rgba(232,196,138,.6),0 0 52px rgba(232,196,138,.28);
+  animation:bloom var(--fd,24s) ease-in-out infinite;animation-delay:var(--fdl,0s)}
+@keyframes bloom{
+  0%{opacity:0;transform:scale(.35) rotate(0deg)}
+  10%{opacity:.95;transform:scale(1.06) rotate(var(--fr,0deg))}
+  30%{opacity:.85;transform:scale(1) rotate(calc(var(--fr,0deg) + 6deg))}
+  62%{opacity:.55;transform:scale(.98) rotate(calc(var(--fr,0deg) + 12deg))}
+  100%{opacity:0;transform:scale(.8) rotate(calc(var(--fr,0deg) + 18deg))}}
+
+/* 流星 */
+.shoots{position:fixed;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.shoots i{position:absolute;height:1.5px;border-radius:2px;opacity:0;
+  background:linear-gradient(90deg,rgba(255,246,226,0) 0%,rgba(255,240,205,.55) 55%,#fffaf0 100%);
+  box-shadow:0 0 8px rgba(255,240,205,.8),0 0 22px rgba(232,196,138,.4);
+  transform:rotate(var(--sr,24deg)) translateX(-40px);
+  animation:shoot var(--sd,13s) linear infinite;animation-delay:var(--sdl,0s)}
+@keyframes shoot{
+  0%{opacity:0;transform:rotate(var(--sr,24deg)) translateX(-60px) scaleX(.5)}
+  3%{opacity:1}
+  16%{opacity:.9}
+  26%{opacity:0;transform:rotate(var(--sr,24deg)) translateX(115vw) scaleX(1)}
+  100%{opacity:0;transform:rotate(var(--sr,24deg)) translateX(115vw) scaleX(1)}}
+
 .frame{position:fixed;inset:9px;z-index:4;pointer-events:none;
   border:1px solid rgba(232,196,138,.22);box-shadow:0 0 24px rgba(232,196,138,.06) inset}
 .frame::before{content:"";position:absolute;inset:5px;border:1px solid rgba(232,196,138,.11)}
 .frame::after{content:"";position:absolute;inset:11px;border:1px solid rgba(232,196,138,.055)}
 .frame b{position:absolute;font-family:Georgia,"Times New Roman",serif;font-style:normal;font-weight:400;
-  font-size:13px;line-height:1;color:rgba(232,196,138,.55);text-shadow:0 0 10px rgba(232,196,138,.3)}
+  font-size:13px;line-height:1;color:rgba(232,196,138,.6);text-shadow:0 0 10px rgba(232,196,138,.35)}
 .frame .tl{top:-7px;left:-5px}.frame .tr{top:-7px;right:-5px}
 .frame .bl{bottom:-7px;left:-5px}.frame .br{bottom:-7px;right:-5px}
-.frame .mt{top:-8px;left:50%;transform:translateX(-50%);font-size:11px;color:rgba(232,196,138,.42)}
-.frame .mb{bottom:-8px;left:50%;transform:translateX(-50%);font-size:11px;color:rgba(232,196,138,.42)}
+.frame .mt{top:-8px;left:50%;transform:translateX(-50%);font-size:11px;color:rgba(232,196,138,.45)}
+.frame .mb{bottom:-8px;left:50%;transform:translateX(-50%);font-size:11px;color:rgba(232,196,138,.45)}
 
-/* 两侧竖排小字 */
 .side{position:fixed;top:50%;z-index:2;writing-mode:vertical-rl;pointer-events:none;
   font-family:"Baskerville",Georgia,serif;font-style:italic;font-size:7.5px;letter-spacing:.52em;
   color:#5b5346;text-shadow:0 0 8px rgba(232,196,138,.16);opacity:.75}
@@ -62,18 +87,15 @@ main{position:relative;z-index:3;width:100%;max-width:31em;margin:0 auto;
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
 .kicker{font-family:-apple-system,"Helvetica Neue",sans-serif;font-size:10px;letter-spacing:.52em;
   color:#8d8272;margin:0 0 22px;padding-left:.52em;text-transform:uppercase}
-
 .orn{font-family:Georgia,"Times New Roman",serif;font-size:10.5px;letter-spacing:.7em;
-  color:rgba(232,196,138,.42);margin:26px 0;padding-left:.7em;text-shadow:0 0 10px rgba(232,196,138,.25)}
-.orn.sm{font-size:9px;letter-spacing:.9em;opacity:.75}
-
+  color:rgba(232,196,138,.45);margin:26px 0;padding-left:.7em;text-shadow:0 0 10px rgba(232,196,138,.28)}
+.orn.sm{font-size:9px;letter-spacing:.9em;opacity:.78}
 blockquote{margin:0;padding:0}
 blockquote p{animation:softGlow 11s ease-in-out infinite;font-family:"Baskerville","Hoefler Text",Georgia,serif;font-style:italic;
   font-size:clamp(15px,4.4vw,18px);line-height:2;color:#d3c8b6;margin:0 0 14px;letter-spacing:.015em}
 @keyframes softGlow{0%,100%{text-shadow:0 0 0 rgba(232,196,138,0)}50%{text-shadow:0 0 18px rgba(232,196,138,.20)}}
 blockquote cite{display:block;font-family:-apple-system,sans-serif;font-style:normal;font-size:9.5px;
   letter-spacing:.42em;color:#5f574c;text-transform:uppercase;padding-left:.42em}
-
 .mine{text-align:left;margin:0 auto;max-width:26em}
 .mine p{font-family:"Baskerville","Hoefler Text",Georgia,serif;font-style:italic;
   font-size:clamp(11.5px,3.1vw,13px);line-height:2.05;color:#bdb2a0;margin:0 0 5px;
@@ -81,7 +103,6 @@ blockquote cite{display:block;font-family:-apple-system,sans-serif;font-style:no
 @keyframes twinkle{0%,100%{opacity:.26;color:#8f8474;text-shadow:0 0 0 rgba(232,196,138,0)}
   45%{opacity:.95;color:#e6d6b6;text-shadow:0 0 14px rgba(232,196,138,.34)}
   62%{opacity:.45;color:#a3977f;text-shadow:0 0 5px rgba(232,196,138,.10)}}
-
 .sig{display:flex;align-items:baseline;justify-content:center;gap:.16em;margin:0;opacity:0;
   animation:fadeSlow 2.6s ease-out forwards;
   font-family:"Snell Roundhand","Apple Chancery","Segoe Script","Brush Script MT",cursive;
@@ -99,7 +120,7 @@ blockquote cite{display:block;font-family:-apple-system,sans-serif;font-style:no
   50%{filter:drop-shadow(0 0 24px rgba(255,240,205,.9)) drop-shadow(0 0 60px rgba(232,196,138,.42)) brightness(1.16)}}
 @keyframes ampGlow{0%,100%{opacity:.55}50%{opacity:1}}
 .foot{margin-top:8vh;font-family:-apple-system,sans-serif;font-size:9px;letter-spacing:.4em;color:#463f36;text-transform:uppercase;padding-left:.4em}
-@media (prefers-reduced-motion:reduce){*{animation:none!important}.sig{opacity:1}.mine p{opacity:.7}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.sig{opacity:1}.mine p{opacity:.7}.blooms b{opacity:.6}}
 </style>
 </head>
 <body>
@@ -136,6 +157,34 @@ blockquote cite{display:block;font-family:-apple-system,sans-serif;font-style:no
   <p>Grain of sand &middot; Grain of sand &middot; Grain of sand &middot; Grain of sand &middot; Grain of sand &middot; Grain of sand &middot; Grain of sand &middot; Grain of sand &middot; Grain of sand &middot; Grain of sand &middot; Grain of sand</p>
   <p>Love alters not &middot; Love alters not &middot; Love alters not &middot; Love alters not &middot; Love alters not &middot; Love alters not &middot; Love alters not &middot; Love alters not &middot; Love alters not &middot; Love alters not &middot; Love alters not</p>
   <p>Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows</p>
+</div>
+<div class="blooms">
+  <b style="left:4%;top:9%;font-size:20px;--fd:23.8s;--fdl:-13.5s;--fr:-15deg">&#10048;</b>
+  <b style="left:84%;top:6%;font-size:15px;--fd:19.9s;--fdl:-10.6s;--fr:0deg">&#10047;</b>
+  <b style="left:46%;top:3%;font-size:12px;--fd:17.3s;--fdl:-21.1s;--fr:4deg">&#10049;</b>
+  <b style="left:8%;top:24%;font-size:17px;--fd:22.6s;--fdl:-6.8s;--fr:11deg">&#10051;</b>
+  <b style="left:90%;top:22%;font-size:22px;--fd:26.5s;--fdl:-1.8s;--fr:-0deg">&#10048;</b>
+  <b style="left:2%;top:40%;font-size:26px;--fd:19.8s;--fdl:-16.1s;--fr:-14deg">&#10047;</b>
+  <b style="left:94%;top:38%;font-size:13px;--fd:25.0s;--fdl:-11.7s;--fr:-13deg">&#10049;</b>
+  <b style="left:12%;top:55%;font-size:18px;--fd:16.8s;--fdl:-22.5s;--fr:19deg">&#10051;</b>
+  <b style="left:86%;top:53%;font-size:24px;--fd:17.9s;--fdl:-10.7s;--fr:18deg">&#10048;</b>
+  <b style="left:5%;top:69%;font-size:14px;--fd:19.0s;--fdl:-10.1s;--fr:2deg">&#10047;</b>
+  <b style="left:92%;top:67%;font-size:19px;--fd:26.7s;--fdl:-6.7s;--fr:-13deg">&#10049;</b>
+  <b style="left:16%;top:82%;font-size:21px;--fd:31.8s;--fdl:-10.7s;--fr:-11deg">&#10051;</b>
+  <b style="left:80%;top:84%;font-size:16px;--fd:24.8s;--fdl:-7.9s;--fr:-14deg">&#10048;</b>
+  <b style="left:40%;top:94%;font-size:13px;--fd:28.4s;--fdl:-8.4s;--fr:-6deg">&#10047;</b>
+  <b style="left:60%;top:91%;font-size:18px;--fd:17.3s;--fdl:-22.2s;--fr:-10deg">&#10049;</b>
+  <b style="left:26%;top:15%;font-size:12px;--fd:30.1s;--fdl:-11.3s;--fr:-11deg">&#10051;</b>
+  <b style="left:72%;top:28%;font-size:14px;--fd:25.6s;--fdl:-9.6s;--fr:10deg">&#10048;</b>
+  <b style="left:30%;top:68%;font-size:11px;--fd:26.4s;--fdl:-3.3s;--fr:-11deg">&#10047;</b>
+  <b style="left:66%;top:74%;font-size:15px;--fd:23.2s;--fdl:-2.2s;--fr:-18deg">&#10049;</b>
+  <b style="left:50%;top:44%;font-size:10px;--fd:22.6s;--fdl:-16.3s;--fr:6deg">&#10051;</b>
+</div>
+<div class="shoots">
+  <i style="top:6%;left:-24%;width:150px;--sd:13s;--sdl:0s;--sr:24deg"></i>
+  <i style="top:34%;left:-30%;width:190px;--sd:17s;--sdl:-6s;--sr:20deg"></i>
+  <i style="top:66%;left:-20%;width:120px;--sd:11s;--sdl:-3s;--sr:28deg"></i>
+  <i style="top:82%;left:-26%;width:210px;--sd:19s;--sdl:-11s;--sr:18deg"></i>
 </div>
 <div class="frame">
   <b class="tl">&#10086;</b><b class="tr">&#10087;</b><b class="bl">&#10087;</b><b class="br">&#10086;</b>
