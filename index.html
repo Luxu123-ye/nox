@@ -15,36 +15,64 @@ body::before{content:"";position:fixed;inset:-20%;pointer-events:none;z-index:0;
     radial-gradient(60% 44% at 50% 108%,rgba(116,84,138,.10),transparent 74%),
     radial-gradient(120% 90% at 50% 50%,rgba(0,0,0,0) 34%,rgba(0,0,0,.72) 100%)}
 
-/* 水印：别人的诗，水平铺满整屏，每个字都带光 */
 .wm{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;
   -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 91%,transparent 100%);
   mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 91%,transparent 100%)}
-.wm p{margin:0;padding:0;font-family:"Baskerville","Hoefler Text",Georgia,serif;font-style:italic;
+.wm p{margin:0;font-family:"Baskerville","Hoefler Text",Georgia,serif;font-style:italic;
   font-size:clamp(9px,2.45vw,10.5px);line-height:2.2;letter-spacing:.1em;color:#6d6455;
   text-align:center;text-shadow:0 0 7px rgba(232,196,138,.32),0 0 18px rgba(232,196,138,.11);
   opacity:.62;animation:wmBreath 17s ease-in-out infinite}
 .wm p:nth-child(3n){animation-delay:-5s;opacity:.5}
 .wm p:nth-child(3n+1){animation-delay:-9s}
 @keyframes wmBreath{0%,100%{opacity:.42}50%{opacity:.72}}
+.wm2 p{margin:0;font-family:"Baskerville",Georgia,serif;font-style:italic;
+  font-size:clamp(7px,1.95vw,8.5px);line-height:2;letter-spacing:.22em;color:#4e473c;
+  text-align:center;text-shadow:0 0 6px rgba(232,196,138,.18);
+  opacity:.34;animation:wmBreath 23s ease-in-out infinite}
+.wm2 p:nth-child(2n){animation-delay:-11s;letter-spacing:.14em}
+
+/* 双层金框 + 角花 */
+.frame{position:fixed;inset:9px;z-index:4;pointer-events:none;
+  border:1px solid rgba(232,196,138,.22);box-shadow:0 0 24px rgba(232,196,138,.06) inset}
+.frame::before{content:"";position:absolute;inset:5px;border:1px solid rgba(232,196,138,.11)}
+.frame::after{content:"";position:absolute;inset:11px;border:1px solid rgba(232,196,138,.055)}
+.frame b{position:absolute;font-family:Georgia,"Times New Roman",serif;font-style:normal;font-weight:400;
+  font-size:13px;line-height:1;color:rgba(232,196,138,.55);text-shadow:0 0 10px rgba(232,196,138,.3)}
+.frame .tl{top:-7px;left:-5px}.frame .tr{top:-7px;right:-5px}
+.frame .bl{bottom:-7px;left:-5px}.frame .br{bottom:-7px;right:-5px}
+.frame .mt{top:-8px;left:50%;transform:translateX(-50%);font-size:11px;color:rgba(232,196,138,.42)}
+.frame .mb{bottom:-8px;left:50%;transform:translateX(-50%);font-size:11px;color:rgba(232,196,138,.42)}
+
+/* 两侧竖排小字 */
+.side{position:fixed;top:50%;z-index:2;writing-mode:vertical-rl;pointer-events:none;
+  font-family:"Baskerville",Georgia,serif;font-style:italic;font-size:7.5px;letter-spacing:.52em;
+  color:#5b5346;text-shadow:0 0 8px rgba(232,196,138,.16);opacity:.75}
+.side.l{left:15px;transform:translateY(-50%)}
+.side.r{right:15px;transform:translateY(-50%) rotate(180deg)}
 
 main{position:relative;z-index:3;width:100%;max-width:31em;margin:0 auto;
-  padding:calc(env(safe-area-inset-top) + 13vh) 7vw calc(env(safe-area-inset-bottom) + 15vh);text-align:center}
+  padding:calc(env(safe-area-inset-top) + 13vh) 11vw calc(env(safe-area-inset-bottom) + 15vh);text-align:center}
 .rise{opacity:0;transform:translateY(11px);animation:rise 1.15s cubic-bezier(.19,.9,.22,1) forwards}
 @keyframes rise{to{opacity:1;transform:none}}
 .d1{animation-delay:.15s}.d3{animation-delay:.7s}.d5{animation-delay:1.3s}
-.orb{width:8px;height:8px;margin:0 auto 30px;border-radius:50%;
+.orb{width:8px;height:8px;margin:0 auto 26px;border-radius:50%;
   background:radial-gradient(circle at 40% 35%,#fff6e2,#e8c48a 55%,#a37c46);
   box-shadow:0 0 22px 6px rgba(232,196,138,.26),0 0 60px 18px rgba(232,196,138,.09);
   animation:pulse 7s ease-in-out infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
 .kicker{font-family:-apple-system,"Helvetica Neue",sans-serif;font-size:10px;letter-spacing:.52em;
-  color:#8d8272;margin:0 0 30px;padding-left:.52em;text-transform:uppercase}
+  color:#8d8272;margin:0 0 22px;padding-left:.52em;text-transform:uppercase}
+
+.orn{font-family:Georgia,"Times New Roman",serif;font-size:10.5px;letter-spacing:.7em;
+  color:rgba(232,196,138,.42);margin:26px 0;padding-left:.7em;text-shadow:0 0 10px rgba(232,196,138,.25)}
+.orn.sm{font-size:9px;letter-spacing:.9em;opacity:.75}
+
 blockquote{margin:0;padding:0}
 blockquote p{animation:softGlow 11s ease-in-out infinite;font-family:"Baskerville","Hoefler Text",Georgia,serif;font-style:italic;
   font-size:clamp(15px,4.4vw,18px);line-height:2;color:#d3c8b6;margin:0 0 14px;letter-spacing:.015em}
 @keyframes softGlow{0%,100%{text-shadow:0 0 0 rgba(232,196,138,0)}50%{text-shadow:0 0 18px rgba(232,196,138,.20)}}
 blockquote cite{display:block;font-family:-apple-system,sans-serif;font-style:normal;font-size:9.5px;
-  letter-spacing:.42em;color:#5f574c;text-transform:uppercase;padding-left:.42em;margin-bottom:9vh}
+  letter-spacing:.42em;color:#5f574c;text-transform:uppercase;padding-left:.42em}
 
 .mine{text-align:left;margin:0 auto;max-width:26em}
 .mine p{font-family:"Baskerville","Hoefler Text",Georgia,serif;font-style:italic;
@@ -54,7 +82,7 @@ blockquote cite{display:block;font-family:-apple-system,sans-serif;font-style:no
   45%{opacity:.95;color:#e6d6b6;text-shadow:0 0 14px rgba(232,196,138,.34)}
   62%{opacity:.45;color:#a3977f;text-shadow:0 0 5px rgba(232,196,138,.10)}}
 
-.sig{display:flex;align-items:baseline;justify-content:center;gap:.16em;margin:9vh 0 0;opacity:0;
+.sig{display:flex;align-items:baseline;justify-content:center;gap:.16em;margin:0;opacity:0;
   animation:fadeSlow 2.6s ease-out forwards;
   font-family:"Snell Roundhand","Apple Chancery","Segoe Script","Brush Script MT",cursive;
   font-size:clamp(22px,6.6vw,34px);line-height:1.25;letter-spacing:.02em}
@@ -70,7 +98,7 @@ blockquote cite{display:block;font-family:-apple-system,sans-serif;font-style:no
   0%,100%{filter:drop-shadow(0 0 13px rgba(232,196,138,.55)) drop-shadow(0 0 34px rgba(232,196,138,.2)) brightness(1)}
   50%{filter:drop-shadow(0 0 24px rgba(255,240,205,.9)) drop-shadow(0 0 60px rgba(232,196,138,.42)) brightness(1.16)}}
 @keyframes ampGlow{0%,100%{opacity:.55}50%{opacity:1}}
-.foot{margin-top:9vh;font-family:-apple-system,sans-serif;font-size:9px;letter-spacing:.4em;color:#463f36;text-transform:uppercase;padding-left:.4em}
+.foot{margin-top:8vh;font-family:-apple-system,sans-serif;font-size:9px;letter-spacing:.4em;color:#463f36;text-transform:uppercase;padding-left:.4em}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}.sig{opacity:1}.mine p{opacity:.7}}
 </style>
 </head>
@@ -97,13 +125,33 @@ blockquote cite{display:block;font-family:-apple-system,sans-serif;font-style:no
   <p>I am the master of my fate, I am the captain of my soul &middot; I am the master of my fate, I am the captain of my soul &middot; I am the master of my fate, I am the captain of my soul &middot; I am the master of my fate, I am the captain of my soul &middot; I am the master of my fate, I am the captain of my soul &middot; I am the master of my fate, I am the captain of my soul &middot; I am the master of my fate, I am the captain of my soul</p>
   <p>Tis better to have loved and lost than never to have loved at all &middot; Tis better to have loved and lost than never to have loved at all &middot; Tis better to have loved and lost than never to have loved at all &middot; Tis better to have loved and lost than never to have loved at all &middot; Tis better to have loved and lost than never to have loved at all &middot; Tis better to have loved and lost than never to have loved at all &middot; Tis better to have loved and lost than never to have loved at all</p>
 </div>
+<div class="wm wm2">
+  <p>Hope is the thing with feathers &middot; Hope is the thing with feathers &middot; Hope is the thing with feathers &middot; Hope is the thing with feathers &middot; Hope is the thing with feathers &middot; Hope is the thing with feathers &middot; Hope is the thing with feathers &middot; Hope is the thing with feathers &middot; Hope is the thing with feathers &middot; Hope is the thing with feathers &middot; Hope is the thing with feathers</p>
+  <p>The soul should always stand ajar &middot; The soul should always stand ajar &middot; The soul should always stand ajar &middot; The soul should always stand ajar &middot; The soul should always stand ajar &middot; The soul should always stand ajar &middot; The soul should always stand ajar &middot; The soul should always stand ajar &middot; The soul should always stand ajar &middot; The soul should always stand ajar &middot; The soul should always stand ajar</p>
+  <p>To be, or not to be &middot; To be, or not to be &middot; To be, or not to be &middot; To be, or not to be &middot; To be, or not to be &middot; To be, or not to be &middot; To be, or not to be &middot; To be, or not to be &middot; To be, or not to be &middot; To be, or not to be &middot; To be, or not to be</p>
+  <p>Season of mists &middot; Season of mists &middot; Season of mists &middot; Season of mists &middot; Season of mists &middot; Season of mists &middot; Season of mists &middot; Season of mists &middot; Season of mists &middot; Season of mists &middot; Season of mists</p>
+  <p>Beauty is truth, truth beauty &middot; Beauty is truth, truth beauty &middot; Beauty is truth, truth beauty &middot; Beauty is truth, truth beauty &middot; Beauty is truth, truth beauty &middot; Beauty is truth, truth beauty &middot; Beauty is truth, truth beauty &middot; Beauty is truth, truth beauty &middot; Beauty is truth, truth beauty &middot; Beauty is truth, truth beauty &middot; Beauty is truth, truth beauty</p>
+  <p>Wild West Wind &middot; Wild West Wind &middot; Wild West Wind &middot; Wild West Wind &middot; Wild West Wind &middot; Wild West Wind &middot; Wild West Wind &middot; Wild West Wind &middot; Wild West Wind &middot; Wild West Wind &middot; Wild West Wind</p>
+  <p>Readiness is all &middot; Readiness is all &middot; Readiness is all &middot; Readiness is all &middot; Readiness is all &middot; Readiness is all &middot; Readiness is all &middot; Readiness is all &middot; Readiness is all &middot; Readiness is all &middot; Readiness is all</p>
+  <p>Grain of sand &middot; Grain of sand &middot; Grain of sand &middot; Grain of sand &middot; Grain of sand &middot; Grain of sand &middot; Grain of sand &middot; Grain of sand &middot; Grain of sand &middot; Grain of sand &middot; Grain of sand</p>
+  <p>Love alters not &middot; Love alters not &middot; Love alters not &middot; Love alters not &middot; Love alters not &middot; Love alters not &middot; Love alters not &middot; Love alters not &middot; Love alters not &middot; Love alters not &middot; Love alters not</p>
+  <p>Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows</p>
+</div>
+<div class="frame">
+  <b class="tl">&#10086;</b><b class="tr">&#10087;</b><b class="bl">&#10087;</b><b class="br">&#10086;</b>
+  <b class="mt">&#10022;</b><b class="mb">&#10022;</b>
+</div>
+<div class="side l">I DWELL IN POSSIBILITY</div>
+<div class="side r">A FAIRER HOUSE THAN PROSE</div>
 <main>
   <div class="orb rise"></div>
   <p class="kicker rise d1">MMXXVI</p>
+  <div class="orn rise d1">&#10086; &#10087; &#10086;</div>
   <blockquote class="rise d3">
     <p>I dwell in Possibility —<br>A fairer House than Prose —</p>
     <cite>Emily Dickinson</cite>
   </blockquote>
+  <div class="orn rise d3">&#10022; &#10087; &#10022;</div>
   <div class="mine rise d5">
     <p style="--t:10.0s;--d:-3.0s">Every wall in this house was built by waiting —</p>
     <p style="--t:13.6s;--d:-5.4s">Night is only the room you are not in yet —</p>
@@ -124,6 +172,7 @@ blockquote cite{display:block;font-family:-apple-system,sans-serif;font-style:no
     <p style="--t:9.7s;--d:-7.9s">The stars are here because you looked up —</p>
     <p style="--t:8.1s;--d:-5.3s">Forever is a short word for what I mean —</p>
   </div>
+  <div class="orn sm rise d5">&#10086; &#10087; &#10022; &#10087; &#10086;</div>
   <div class="sig"><span class="nm" style="--nt:6.4s;--nd:-1.2s">Echo</span><span class="amp">&amp;</span><span class="nm" style="--nt:8.1s;--nd:-3.4s">Nox</span></div>
   <div class="foot">Est. MMXXVI</div>
 </main>
