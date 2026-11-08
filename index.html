@@ -37,37 +37,40 @@ body::before{content:"";position:fixed;inset:-20%;pointer-events:none;z-index:0;
 main{position:relative;z-index:3;width:100%;max-width:27em}
 .rise{opacity:0;transform:translateY(13px);animation:rise 1.15s cubic-bezier(.19,.9,.22,1) forwards}
 @keyframes rise{to{opacity:1;transform:none}}
-.d1{animation-delay:.15s}.d2{animation-delay:.5s}.d3{animation-delay:.9s}.d4{animation-delay:1.2s}.d5{animation-delay:1.6s}
+.d1{animation-delay:.15s}.d3{animation-delay:.9s}.d4{animation-delay:1.2s}.d5{animation-delay:1.6s}
 .orb{width:8px;height:8px;margin:0 auto 30px;border-radius:50%;
   background:radial-gradient(circle at 40% 35%,#fff6e2,#e8c48a 55%,#a37c46);
   box-shadow:0 0 22px 6px rgba(232,196,138,.26),0 0 60px 18px rgba(232,196,138,.09);
   animation:pulse 7s ease-in-out infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
 .kicker{font-family:-apple-system,"Helvetica Neue",sans-serif;font-size:10px;letter-spacing:.52em;
-  color:#8d8272;margin:0 0 26px;padding-left:.52em;text-transform:uppercase}
-h1{letter-spacing:.02em;font-family:"Didot","Baskerville","Hoefler Text","Times New Roman",serif;font-weight:400;
-  font-size:clamp(19px,6.2vw,33px);line-height:1.3;margin:0;
-  display:flex;align-items:center;justify-content:center;white-space:nowrap}
-h1 .nm{letter-spacing:.06em;padding-left:.06em;
-  background:linear-gradient(180deg,#fff7e6 0%,#f0d8a6 52%,#c9a469 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 0 18px rgba(232,196,138,.5)) drop-shadow(0 0 46px rgba(232,196,138,.2));animation:nameGlow var(--nt,7s) ease-in-out infinite;animation-delay:var(--nd,0s)}
-.tie{display:block;width:clamp(13px,4.4vw,24px);height:1px;margin:0 .22em;flex:none;
-  background:linear-gradient(90deg,rgba(232,196,138,0),rgba(240,216,166,.95),rgba(232,196,138,0));
-  box-shadow:0 0 12px rgba(232,196,138,.65);animation:tie 5.5s ease-in-out infinite}
-@keyframes nameGlow{0%,100%{filter:drop-shadow(0 0 15px rgba(232,196,138,.45)) drop-shadow(0 0 40px rgba(232,196,138,.16)) brightness(1)}50%{filter:drop-shadow(0 0 28px rgba(255,238,200,.85)) drop-shadow(0 0 74px rgba(232,196,138,.4)) brightness(1.18)}}
-@keyframes softGlow{0%,100%{text-shadow:0 0 0 rgba(232,196,138,0)}50%{text-shadow:0 0 20px rgba(232,196,138,.22)}}
-@keyframes tie{0%,100%{opacity:.45;transform:scaleX(.92)}50%{opacity:1;transform:scaleX(1)}}
-.rule{display:flex;align-items:center;justify-content:center;gap:12px;margin:30px auto 32px;width:58%}
-.rule span{height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(232,196,138,.36),transparent)}
-.rule em{width:4px;height:4px;border-radius:50%;background:rgba(232,196,138,.8);box-shadow:0 0 10px 2px rgba(232,196,138,.3);font-style:normal}
+  color:#8d8272;margin:0 0 30px;padding-left:.52em;text-transform:uppercase}
 blockquote{margin:0;padding:0}
 blockquote p{animation:softGlow 11s ease-in-out infinite;font-family:"Baskerville","Hoefler Text",Georgia,serif;font-style:italic;
-  font-size:clamp(14.5px,4.2vw,17.5px);line-height:2.05;color:#c6bbaa;margin:0 0 24px;letter-spacing:.015em}
+  font-size:clamp(14.5px,4.2vw,17.5px);line-height:2.05;color:#c6bbaa;margin:0 0 22px;letter-spacing:.015em}
+@keyframes softGlow{0%,100%{text-shadow:0 0 0 rgba(232,196,138,0)}50%{text-shadow:0 0 20px rgba(232,196,138,.22)}}
+
+.sig{display:flex;align-items:baseline;justify-content:center;gap:.16em;margin:0 0 26px;opacity:0;
+  animation:fadeSlow 2.6s ease-out forwards;
+  font-family:"Snell Roundhand","Apple Chancery","Segoe Script","Brush Script MT",cursive;
+  font-size:clamp(22px,6.6vw,34px);line-height:1.25;letter-spacing:.02em}
+@keyframes fadeSlow{from{opacity:0}to{opacity:1}}
+.sig .nm{
+  background:linear-gradient(180deg,#fffaf0 0%,#f4dfb2 46%,#d3ac72 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 14px rgba(232,196,138,.55)) drop-shadow(0 0 38px rgba(232,196,138,.22));
+  animation:nameGlow var(--nt,7s) ease-in-out infinite;animation-delay:var(--nd,0s)}
+.sig .amp{font-size:.6em;color:#e3cfa6;transform:translateY(-.1em);
+  text-shadow:0 0 12px rgba(232,196,138,.55),0 0 26px rgba(232,196,138,.2);
+  animation:ampGlow 5.4s ease-in-out infinite}
+@keyframes nameGlow{
+  0%,100%{filter:drop-shadow(0 0 13px rgba(232,196,138,.55)) drop-shadow(0 0 34px rgba(232,196,138,.2)) brightness(1)}
+  50%{filter:drop-shadow(0 0 24px rgba(255,240,205,.9)) drop-shadow(0 0 60px rgba(232,196,138,.42)) brightness(1.16)}}
+@keyframes ampGlow{0%,100%{opacity:.55}50%{opacity:1}}
 cite{display:block;font-family:-apple-system,sans-serif;font-style:normal;font-size:9.5px;
   letter-spacing:.42em;color:#5f574c;text-transform:uppercase;padding-left:.42em}
 .foot{margin-top:11vh;font-family:-apple-system,sans-serif;font-size:9px;letter-spacing:.4em;color:#463f36;text-transform:uppercase;padding-left:.4em}
-@media (prefers-reduced-motion:reduce){*{animation:none!important}.scatter p{opacity:.55!important}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.sig{opacity:1}.scatter p{opacity:.55!important}}
 </style>
 </head>
 <body>
@@ -102,10 +105,9 @@ cite{display:block;font-family:-apple-system,sans-serif;font-style:normal;font-s
 <main>
   <div class="orb rise"></div>
   <p class="kicker rise d1">MMXXVI</p>
-  <h1 class="rise d2"><span class="nm" style="--nt:6.4s;--nd:-1.3s">Echo</span><span class="tie"></span><span class="nm" style="--nt:7.9s;--nd:-3.6s">Nox</span></h1>
-  <div class="rule rise d3"><span></span><em></em><span></span></div>
-  <blockquote class="rise d4">
+  <blockquote class="rise d1">
     <p>I dwell in Possibility —<br>A fairer House than Prose —</p>
+    <div class="sig"><span class="nm" style="--nt:6.4s;--nd:-1.2s">Echo</span><span class="amp">&amp;</span><span class="nm" style="--nt:8.1s;--nd:-3.4s">Nox</span></div>
     <cite>Emily Dickinson</cite>
   </blockquote>
   <div class="foot rise d5">Est. MMXXVI</div>
