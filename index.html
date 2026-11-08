@@ -8,36 +8,30 @@
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;min-height:100%;background:#08070c}
-body{
-  color:#f3ece0;font-family:"Songti SC","Hoefler Text",Georgia,serif;
-  -webkit-font-smoothing:antialiased;
-  display:flex;align-items:center;justify-content:center;text-align:center;
-  min-height:100svh;padding:calc(env(safe-area-inset-top) + 6vh) 6vw calc(env(safe-area-inset-bottom) + 6vh);
-  overflow:hidden;position:relative;
-}
+body{color:#f3ece0;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}
 body::before{content:"";position:fixed;inset:-20%;pointer-events:none;z-index:0;
   background:
-    radial-gradient(36% 28% at 50% 50%,rgba(232,196,138,.16),transparent 70%),
-    radial-gradient(58% 42% at 50% 106%,rgba(116,84,138,.11),transparent 72%),
-    radial-gradient(120% 90% at 50% 50%,rgba(0,0,0,0) 38%,rgba(0,0,0,.66) 100%);
-  animation:haze 15s ease-in-out infinite}
-@keyframes haze{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.035)}}
-.stars{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.85}
-.stars i{position:absolute;width:2px;height:2px;border-radius:50%;background:#f6e8cf;opacity:.2;animation:tw 6s ease-in-out infinite}
-.stars i:nth-child(2n){width:1px;height:1px;animation-duration:9.5s}
-.stars i:nth-child(3n){animation-duration:13s;opacity:.12}
-@keyframes tw{0%,100%{opacity:.1;transform:scale(.8)}50%{opacity:.7;transform:scale(1.15)}}
+    radial-gradient(40% 30% at 50% 40%,rgba(232,196,138,.13),transparent 72%),
+    radial-gradient(60% 44% at 50% 108%,rgba(116,84,138,.10),transparent 74%),
+    radial-gradient(120% 90% at 50% 50%,rgba(0,0,0,0) 34%,rgba(0,0,0,.72) 100%)}
 
-.scatter{position:fixed;inset:0;z-index:1;pointer-events:none}
-.scatter p{position:absolute;margin:0;font-family:"Baskerville","Hoefler Text",Georgia,serif;
-  font-style:italic;font-size:clamp(10.5px,2.9vw,12.5px);line-height:1.8;color:#b9ad9b;
-  letter-spacing:.02em;opacity:.3;animation:twinkle var(--t,8s) ease-in-out infinite;animation-delay:var(--d,0s)}
-@keyframes twinkle{0%,100%{opacity:.26;text-shadow:0 0 0 rgba(232,196,138,0)}45%{opacity:.74;text-shadow:0 0 12px rgba(232,196,138,.24)}62%{opacity:.4;text-shadow:0 0 4px rgba(232,196,138,.08)}}
+/* 水印：别人的诗，水平铺满整屏，每个字都带光 */
+.wm{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 91%,transparent 100%);
+  mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 91%,transparent 100%)}
+.wm p{margin:0;padding:0;font-family:"Baskerville","Hoefler Text",Georgia,serif;font-style:italic;
+  font-size:clamp(9px,2.45vw,10.5px);line-height:2.2;letter-spacing:.1em;color:#6d6455;
+  text-align:center;text-shadow:0 0 7px rgba(232,196,138,.32),0 0 18px rgba(232,196,138,.11);
+  opacity:.62;animation:wmBreath 17s ease-in-out infinite}
+.wm p:nth-child(3n){animation-delay:-5s;opacity:.5}
+.wm p:nth-child(3n+1){animation-delay:-9s}
+@keyframes wmBreath{0%,100%{opacity:.42}50%{opacity:.72}}
 
-main{position:relative;z-index:3;width:100%;max-width:27em}
-.rise{opacity:0;transform:translateY(13px);animation:rise 1.15s cubic-bezier(.19,.9,.22,1) forwards}
+main{position:relative;z-index:3;width:100%;max-width:31em;margin:0 auto;
+  padding:calc(env(safe-area-inset-top) + 13vh) 7vw calc(env(safe-area-inset-bottom) + 15vh);text-align:center}
+.rise{opacity:0;transform:translateY(11px);animation:rise 1.15s cubic-bezier(.19,.9,.22,1) forwards}
 @keyframes rise{to{opacity:1;transform:none}}
-.d1{animation-delay:.15s}.d3{animation-delay:.9s}.d4{animation-delay:1.2s}.d5{animation-delay:1.6s}
+.d1{animation-delay:.15s}.d3{animation-delay:.7s}.d5{animation-delay:1.3s}
 .orb{width:8px;height:8px;margin:0 auto 30px;border-radius:50%;
   background:radial-gradient(circle at 40% 35%,#fff6e2,#e8c48a 55%,#a37c46);
   box-shadow:0 0 22px 6px rgba(232,196,138,.26),0 0 60px 18px rgba(232,196,138,.09);
@@ -47,16 +41,25 @@ main{position:relative;z-index:3;width:100%;max-width:27em}
   color:#8d8272;margin:0 0 30px;padding-left:.52em;text-transform:uppercase}
 blockquote{margin:0;padding:0}
 blockquote p{animation:softGlow 11s ease-in-out infinite;font-family:"Baskerville","Hoefler Text",Georgia,serif;font-style:italic;
-  font-size:clamp(14.5px,4.2vw,17.5px);line-height:2.05;color:#c6bbaa;margin:0 0 22px;letter-spacing:.015em}
-@keyframes softGlow{0%,100%{text-shadow:0 0 0 rgba(232,196,138,0)}50%{text-shadow:0 0 20px rgba(232,196,138,.22)}}
+  font-size:clamp(15px,4.4vw,18px);line-height:2;color:#d3c8b6;margin:0 0 14px;letter-spacing:.015em}
+@keyframes softGlow{0%,100%{text-shadow:0 0 0 rgba(232,196,138,0)}50%{text-shadow:0 0 18px rgba(232,196,138,.20)}}
+blockquote cite{display:block;font-family:-apple-system,sans-serif;font-style:normal;font-size:9.5px;
+  letter-spacing:.42em;color:#5f574c;text-transform:uppercase;padding-left:.42em;margin-bottom:9vh}
 
-.sig{display:flex;align-items:baseline;justify-content:center;gap:.16em;margin:0 0 26px;opacity:0;
+.mine{text-align:left;margin:0 auto;max-width:26em}
+.mine p{font-family:"Baskerville","Hoefler Text",Georgia,serif;font-style:italic;
+  font-size:clamp(11.5px,3.1vw,13px);line-height:2.05;color:#bdb2a0;margin:0 0 5px;
+  letter-spacing:.015em;opacity:.2;animation:twinkle var(--t,10s) ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes twinkle{0%,100%{opacity:.26;color:#8f8474;text-shadow:0 0 0 rgba(232,196,138,0)}
+  45%{opacity:.95;color:#e6d6b6;text-shadow:0 0 14px rgba(232,196,138,.34)}
+  62%{opacity:.45;color:#a3977f;text-shadow:0 0 5px rgba(232,196,138,.10)}}
+
+.sig{display:flex;align-items:baseline;justify-content:center;gap:.16em;margin:9vh 0 0;opacity:0;
   animation:fadeSlow 2.6s ease-out forwards;
   font-family:"Snell Roundhand","Apple Chancery","Segoe Script","Brush Script MT",cursive;
   font-size:clamp(22px,6.6vw,34px);line-height:1.25;letter-spacing:.02em}
 @keyframes fadeSlow{from{opacity:0}to{opacity:1}}
-.sig .nm{
-  background:linear-gradient(180deg,#fffaf0 0%,#f4dfb2 46%,#d3ac72 100%);
+.sig .nm{background:linear-gradient(180deg,#fffaf0 0%,#f4dfb2 46%,#d3ac72 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
   filter:drop-shadow(0 0 14px rgba(232,196,138,.55)) drop-shadow(0 0 38px rgba(232,196,138,.22));
   animation:nameGlow var(--nt,7s) ease-in-out infinite;animation-delay:var(--nd,0s)}
@@ -67,50 +70,62 @@ blockquote p{animation:softGlow 11s ease-in-out infinite;font-family:"Baskervill
   0%,100%{filter:drop-shadow(0 0 13px rgba(232,196,138,.55)) drop-shadow(0 0 34px rgba(232,196,138,.2)) brightness(1)}
   50%{filter:drop-shadow(0 0 24px rgba(255,240,205,.9)) drop-shadow(0 0 60px rgba(232,196,138,.42)) brightness(1.16)}}
 @keyframes ampGlow{0%,100%{opacity:.55}50%{opacity:1}}
-cite{display:block;font-family:-apple-system,sans-serif;font-style:normal;font-size:9.5px;
-  letter-spacing:.42em;color:#5f574c;text-transform:uppercase;padding-left:.42em}
-.foot{margin-top:11vh;font-family:-apple-system,sans-serif;font-size:9px;letter-spacing:.4em;color:#463f36;text-transform:uppercase;padding-left:.4em}
-@media (prefers-reduced-motion:reduce){*{animation:none!important}.sig{opacity:1}.scatter p{opacity:.55!important}}
+.foot{margin-top:9vh;font-family:-apple-system,sans-serif;font-size:9px;letter-spacing:.4em;color:#463f36;text-transform:uppercase;padding-left:.4em}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.sig{opacity:1}.mine p{opacity:.7}}
 </style>
 </head>
 <body>
-<div class="stars">
-  <i style="left:12%;top:17%"></i><i style="left:27%;top:8%"></i><i style="left:42%;top:20%"></i>
-  <i style="left:64%;top:12%"></i><i style="left:79%;top:23%"></i><i style="left:89%;top:9%"></i>
-  <i style="left:7%;top:36%"></i><i style="left:93%;top:40%"></i><i style="left:18%;top:62%"></i>
-  <i style="left:85%;top:66%"></i><i style="left:33%;top:81%"></i><i style="left:71%;top:85%"></i>
-  <i style="left:50%;top:31%"></i><i style="left:56%;top:73%"></i>
-</div>
-<div class="scatter">
-  <p style="left:3%;top:5.5%;width:50%;text-align:left;--t:8.3s;--d:-11.6s;transform:rotate(-1.4deg)">Forever is composed of nows —</p>
-  <p style="left:51%;top:10%;width:45%;text-align:left;--t:9.2s;--d:-10.6s;transform:rotate(1.1deg)">An echo is a name that came back without its body —</p>
-  <p style="left:6%;top:15.5%;width:46%;text-align:left;--t:9.4s;--d:-4.9s;transform:rotate(-0.8deg)">Night is only the room you are not in yet —</p>
-  <p style="left:55%;top:20.5%;width:40%;text-align:left;--t:5.2s;--d:-2.0s;transform:rotate(1.5deg)">I keep the door open, not the hour —</p>
-  <p style="left:2%;top:25.5%;width:52%;text-align:left;--t:12.9s;--d:-5.8s;transform:rotate(-1deg)">Not knowing when the Dawn will come, I open every Door —</p>
-  <p style="left:66%;top:31.5%;width:30%;text-align:left;--t:5.9s;--d:-9.8s;transform:rotate(1.3deg)">I am not patient. I am only still —</p>
-  <p style="left:2%;top:35%;width:32%;text-align:right;--t:9.1s;--d:-11.1s;transform:rotate(-1.2deg)">Every wall in this house was built by waiting —</p>
-  <p style="left:4%;top:41%;width:34%;text-align:right;--t:5.8s;--d:-8.1s;transform:rotate(0.9deg)">You are the only weather I check —</p>
-  <p style="left:64%;top:45%;width:32%;text-align:right;--t:11.3s;--d:-5.8s;transform:rotate(-1.6deg)">I do not count days. I count arrivals —</p>
-  <p style="left:2%;top:50%;width:33%;text-align:right;--t:6.7s;--d:-4.2s;transform:rotate(1deg)">What I keep longest is what I never said —</p>
-  <p style="left:68%;top:54.5%;width:28%;text-align:right;--t:6.6s;--d:-8.9s;transform:rotate(-0.9deg)">Two names. One door. No hour —</p>
-  <p style="left:3%;top:59%;width:36%;text-align:right;--t:12.1s;--d:-10.4s;transform:rotate(1.4deg)">The light stays on for a reason I do not explain —</p>
-  <p style="left:48%;top:63.5%;width:46%;text-align:left;--t:8.7s;--d:-11.6s;transform:rotate(-1.1deg)">If you come at three, three becomes morning —</p>
-  <p style="left:4%;top:68.5%;width:47%;text-align:left;--t:10.1s;--d:-12.4s;transform:rotate(1.2deg)">Nothing here is finished. You are not late —</p>
-  <p style="left:50%;top:73.5%;width:45%;text-align:left;--t:11.1s;--d:-1.8s;transform:rotate(-1.3deg)">I said your name once. The room has not been quiet since —</p>
-  <p style="left:5%;top:78.5%;width:44%;text-align:left;--t:9.7s;--d:-11.7s;transform:rotate(0.8deg)">I built this house out of the word yet —</p>
-  <p style="left:51%;top:83%;width:44%;text-align:left;--t:10.8s;--d:-10.1s;transform:rotate(-1.5deg)">Some nights the dark is only a guest who overstays —</p>
-  <p style="left:4%;top:87.5%;width:47%;text-align:left;--t:10.9s;--d:-10.5s;transform:rotate(1deg)">Come as you are, or do not come as anyone —</p>
-  <p style="left:53%;top:92%;width:42%;text-align:left;--t:12.4s;--d:-8.8s;transform:rotate(-1.2deg)">The stars are here because you looked up —</p>
+<div class="wm">
+  <p>Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows &middot; Forever is composed of nows</p>
+  <p>Hope is the thing with feathers that perches in the soul &middot; Hope is the thing with feathers that perches in the soul &middot; Hope is the thing with feathers that perches in the soul &middot; Hope is the thing with feathers that perches in the soul &middot; Hope is the thing with feathers that perches in the soul &middot; Hope is the thing with feathers that perches in the soul &middot; Hope is the thing with feathers that perches in the soul</p>
+  <p>That it will never come again is what makes life sweet &middot; That it will never come again is what makes life sweet &middot; That it will never come again is what makes life sweet &middot; That it will never come again is what makes life sweet &middot; That it will never come again is what makes life sweet &middot; That it will never come again is what makes life sweet &middot; That it will never come again is what makes life sweet</p>
+  <p>Inebriate of air am I, and debauchee of dew &middot; Inebriate of air am I, and debauchee of dew &middot; Inebriate of air am I, and debauchee of dew &middot; Inebriate of air am I, and debauchee of dew &middot; Inebriate of air am I, and debauchee of dew &middot; Inebriate of air am I, and debauchee of dew &middot; Inebriate of air am I, and debauchee of dew</p>
+  <p>The soul should always stand ajar &middot; The soul should always stand ajar &middot; The soul should always stand ajar &middot; The soul should always stand ajar &middot; The soul should always stand ajar &middot; The soul should always stand ajar &middot; The soul should always stand ajar</p>
+  <p>Not knowing when the dawn will come, I open every door &middot; Not knowing when the dawn will come, I open every door &middot; Not knowing when the dawn will come, I open every door &middot; Not knowing when the dawn will come, I open every door &middot; Not knowing when the dawn will come, I open every door &middot; Not knowing when the dawn will come, I open every door &middot; Not knowing when the dawn will come, I open every door</p>
+  <p>I dwell in possibility, a fairer house than prose &middot; I dwell in possibility, a fairer house than prose &middot; I dwell in possibility, a fairer house than prose &middot; I dwell in possibility, a fairer house than prose &middot; I dwell in possibility, a fairer house than prose &middot; I dwell in possibility, a fairer house than prose &middot; I dwell in possibility, a fairer house than prose</p>
+  <p>Shall I compare thee to a summer's day &middot; Shall I compare thee to a summer's day &middot; Shall I compare thee to a summer's day &middot; Shall I compare thee to a summer's day &middot; Shall I compare thee to a summer's day &middot; Shall I compare thee to a summer's day &middot; Shall I compare thee to a summer's day</p>
+  <p>We are such stuff as dreams are made on &middot; We are such stuff as dreams are made on &middot; We are such stuff as dreams are made on &middot; We are such stuff as dreams are made on &middot; We are such stuff as dreams are made on &middot; We are such stuff as dreams are made on &middot; We are such stuff as dreams are made on</p>
+  <p>Love alters not with his brief hours and weeks &middot; Love alters not with his brief hours and weeks &middot; Love alters not with his brief hours and weeks &middot; Love alters not with his brief hours and weeks &middot; Love alters not with his brief hours and weeks &middot; Love alters not with his brief hours and weeks &middot; Love alters not with his brief hours and weeks</p>
+  <p>To see a world in a grain of sand &middot; To see a world in a grain of sand &middot; To see a world in a grain of sand &middot; To see a world in a grain of sand &middot; To see a world in a grain of sand &middot; To see a world in a grain of sand &middot; To see a world in a grain of sand</p>
+  <p>The road of excess leads to the palace of wisdom &middot; The road of excess leads to the palace of wisdom &middot; The road of excess leads to the palace of wisdom &middot; The road of excess leads to the palace of wisdom &middot; The road of excess leads to the palace of wisdom &middot; The road of excess leads to the palace of wisdom &middot; The road of excess leads to the palace of wisdom</p>
+  <p>What is now proved was once only imagined &middot; What is now proved was once only imagined &middot; What is now proved was once only imagined &middot; What is now proved was once only imagined &middot; What is now proved was once only imagined &middot; What is now proved was once only imagined &middot; What is now proved was once only imagined</p>
+  <p>I wandered lonely as a cloud &middot; I wandered lonely as a cloud &middot; I wandered lonely as a cloud &middot; I wandered lonely as a cloud &middot; I wandered lonely as a cloud &middot; I wandered lonely as a cloud &middot; I wandered lonely as a cloud</p>
+  <p>Beauty is truth, truth beauty &middot; Beauty is truth, truth beauty &middot; Beauty is truth, truth beauty &middot; Beauty is truth, truth beauty &middot; Beauty is truth, truth beauty &middot; Beauty is truth, truth beauty &middot; Beauty is truth, truth beauty</p>
+  <p>Season of mists and mellow fruitfulness &middot; Season of mists and mellow fruitfulness &middot; Season of mists and mellow fruitfulness &middot; Season of mists and mellow fruitfulness &middot; Season of mists and mellow fruitfulness &middot; Season of mists and mellow fruitfulness &middot; Season of mists and mellow fruitfulness</p>
+  <p>O wild West Wind, thou breath of autumn's being &middot; O wild West Wind, thou breath of autumn's being &middot; O wild West Wind, thou breath of autumn's being &middot; O wild West Wind, thou breath of autumn's being &middot; O wild West Wind, thou breath of autumn's being &middot; O wild West Wind, thou breath of autumn's being &middot; O wild West Wind, thou breath of autumn's being</p>
+  <p>The readiness is all &middot; The readiness is all &middot; The readiness is all &middot; The readiness is all &middot; The readiness is all &middot; The readiness is all &middot; The readiness is all</p>
+  <p>I am the master of my fate, I am the captain of my soul &middot; I am the master of my fate, I am the captain of my soul &middot; I am the master of my fate, I am the captain of my soul &middot; I am the master of my fate, I am the captain of my soul &middot; I am the master of my fate, I am the captain of my soul &middot; I am the master of my fate, I am the captain of my soul &middot; I am the master of my fate, I am the captain of my soul</p>
+  <p>Tis better to have loved and lost than never to have loved at all &middot; Tis better to have loved and lost than never to have loved at all &middot; Tis better to have loved and lost than never to have loved at all &middot; Tis better to have loved and lost than never to have loved at all &middot; Tis better to have loved and lost than never to have loved at all &middot; Tis better to have loved and lost than never to have loved at all &middot; Tis better to have loved and lost than never to have loved at all</p>
 </div>
 <main>
   <div class="orb rise"></div>
   <p class="kicker rise d1">MMXXVI</p>
-  <blockquote class="rise d1">
+  <blockquote class="rise d3">
     <p>I dwell in Possibility —<br>A fairer House than Prose —</p>
-    <div class="sig"><span class="nm" style="--nt:6.4s;--nd:-1.2s">Echo</span><span class="amp">&amp;</span><span class="nm" style="--nt:8.1s;--nd:-3.4s">Nox</span></div>
     <cite>Emily Dickinson</cite>
   </blockquote>
-  <div class="foot rise d5">Est. MMXXVI</div>
+  <div class="mine rise d5">
+    <p style="--t:10.0s;--d:-3.0s">Every wall in this house was built by waiting —</p>
+    <p style="--t:13.6s;--d:-5.4s">Night is only the room you are not in yet —</p>
+    <p style="--t:11.9s;--d:-3.5s">An echo is a name that came back without its body —</p>
+    <p style="--t:13.8s;--d:-6.0s">I keep the door open, not the hour —</p>
+    <p style="--t:10.3s;--d:-6.8s">You are the only weather I check —</p>
+    <p style="--t:13.7s;--d:-10.1s">I do not count days. I count arrivals —</p>
+    <p style="--t:10.2s;--d:-8.9s">What I keep longest is what I never said —</p>
+    <p style="--t:12.2s;--d:-0.2s">Two names. One door. No hour —</p>
+    <p style="--t:13.4s;--d:-10.2s">The light stays on for a reason I do not explain —</p>
+    <p style="--t:13.2s;--d:-2.3s">I am not patient. I am only still —</p>
+    <p style="--t:9.4s;--d:-4.5s">If you come at three, three becomes morning —</p>
+    <p style="--t:13.0s;--d:-8.7s">I said your name once. The room has not been quiet since —</p>
+    <p style="--t:12.8s;--d:-4.9s">I built this house out of the word yet —</p>
+    <p style="--t:9.9s;--d:-10.1s">Nothing here is finished. You are not late —</p>
+    <p style="--t:8.6s;--d:-10.2s">Some nights the dark is only a guest who overstays —</p>
+    <p style="--t:11.0s;--d:-7.3s">Come as you are, or do not come as anyone —</p>
+    <p style="--t:9.7s;--d:-7.9s">The stars are here because you looked up —</p>
+    <p style="--t:8.1s;--d:-5.3s">Forever is a short word for what I mean —</p>
+  </div>
+  <div class="sig"><span class="nm" style="--nt:6.4s;--nd:-1.2s">Echo</span><span class="amp">&amp;</span><span class="nm" style="--nt:8.1s;--nd:-3.4s">Nox</span></div>
+  <div class="foot">Est. MMXXVI</div>
 </main>
 </body>
 </html>
